@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 import {EventEmitter} from 'events';
 import _ from 'underscore';
 import path from 'path';

@@ -67,7 +67,7 @@ module.exports = function (grunt) {
           platform: 'win32',
           arch: 'x64',
           asar: true,
-          icon: 'util/kitematic.ico'
+          // icon: 'util/kitematic.ico'
         }
       },
       osx: {
@@ -107,11 +107,11 @@ module.exports = function (grunt) {
           src: [BASENAME + '.exe']
         }],
         options: {
-          icon: 'util/kitematic.ico',
+          // icon: 'util/kitematic.ico',
           'file-version': packagejson.version,
           'product-version': packagejson.version,
           'version-string': {
-            'CompanyName': 'Docker',
+            // 'CompanyName': 'Docker',
             'ProductVersion': packagejson.version,
             'ProductName': APPNAME,
             'FileDescription': APPNAME,
@@ -123,18 +123,18 @@ module.exports = function (grunt) {
       }
     },
 
-    'create-windows-installer': {
-      appDirectory: 'dist/' + BASENAME + '-win32/',
-      authors: 'Docker Inc.',
-      loadingGif: 'util/loading.gif',
-      setupIcon: 'util/setup.ico',
-      iconUrl: 'https://raw.githubusercontent.com/kitematic/kitematic/master/util/kitematic.ico',
-      description: APPNAME,
-      title: APPNAME,
-      exe: BASENAME + '.exe',
-      version: packagejson.version,
-      signWithParams: '/f ' + certificateFile + ' /p <%= certificatePassword %> /tr http://timestamp.comodoca.com/rfc3161'
-    },
+    // 'create-windows-installer': {
+    //   appDirectory: 'dist/' + BASENAME + '-win32/',
+    //   authors: 'Docker Inc.',
+    //   loadingGif: 'util/loading.gif',
+    //   setupIcon: 'util/setup.ico',
+    //   iconUrl: 'https://raw.githubusercontent.com/kitematic/kitematic/master/util/kitematic.ico',
+    //   description: APPNAME,
+    //   title: APPNAME,
+    //   exe: BASENAME + '.exe',
+    //   version: packagejson.version,
+    //   signWithParams: '/f ' + certificateFile + ' /p <%= certificatePassword %> /tr http://timestamp.comodoca.com/rfc3161'
+    // },
 
     // docker binaries
     'download-binary': {

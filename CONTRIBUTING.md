@@ -7,3 +7,5 @@ If you do want to contribute something kite-shell specific, welcome and thank yo
 ## License
 
 By contributing your code, you agree to license your contribution under the [Apache license](https://github.com/smashwilson/kite-shell/blob/master/LICENSE).
+
+<!-- Modified from upstream by Ash Wilson -->

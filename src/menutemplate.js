@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 var remote = require('remote');
 var app = remote.require('app');
 var shell = require('shell');

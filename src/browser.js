@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 import app from 'app';
 import autoUpdater from 'auto-updater';
 import BrowserWindow from 'browser-window';

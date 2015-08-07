@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 import React from 'react/addons';
 import metrics from '../utils/MetricsUtil';
 import utils from '../utils/Util';

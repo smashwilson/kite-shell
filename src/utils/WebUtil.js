@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 import remote from 'remote';
 var app = remote.require('app');
 import fs from 'fs';

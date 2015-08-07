@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 import async from 'async';
 import fs from 'fs';
 import path from 'path';

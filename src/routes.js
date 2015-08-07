@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 import React from 'react/addons';
 import Setup from './components/Setup.react';
 import About from './components/About.react';

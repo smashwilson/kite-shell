@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 require.main.paths.splice(0, 0, process.env.NODE_PATH);
 import remote from 'remote';
 var Menu = remote.require('menu');

@@ -1,3 +1,5 @@
+// Modified from Kitematic by Ash Wilson
+
 import _ from 'underscore';
 import request from 'request';
 import accountServerActions from '../actions/AccountServerActions';
