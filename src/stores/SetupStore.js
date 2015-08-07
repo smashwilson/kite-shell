@@ -10,7 +10,6 @@ import virtualBox from '../utils/VirtualBoxUtil';
 import setupUtil from '../utils/SetupUtil';
 import util from '../utils/Util';
 import assign from 'object-assign';
-import bugsnag from 'bugsnag-js';
 import docker from '../utils/DockerUtil';
 
 var _currentStep = null;
@@ -215,10 +214,6 @@ var SetupStore = assign(Object.create(EventEmitter.prototype), {
       } catch (err) {
         err.message = util.removeSensitiveData(err.message);
         console.log(err);
-        bugsnag.notify('SetupError', err.message, {
-          error: err,
-          output: err.message
-        }, 'info');
         _error = err;
         this.emit(this.ERROR_EVENT);
         yield this.pause();
