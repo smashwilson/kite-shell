@@ -37,7 +37,7 @@ module.exports = function (grunt) {
     });
   });
 
-  var BASENAME = 'Kitematic';
+  var BASENAME = 'Kite-Shell';
   var APPNAME = BASENAME;
 
   if (alpha) {
@@ -79,7 +79,7 @@ module.exports = function (grunt) {
           platform: 'darwin',
           arch: 'x64',
           asar: true,
-          'app-bundle-id': 'com.kitematic.kitematic',
+          'app-bundle-id': 'com.kite-shell.kite-shell',
           'app-version': packagejson.version
         }
       }
