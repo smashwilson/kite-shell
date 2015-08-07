@@ -6,7 +6,6 @@ import fs from 'fs';
 import util from './Util';
 import path from 'path';
 import bugsnag from 'bugsnag-js';
-import metrics from './MetricsUtil';
 
 var WebUtil = {
   addWindowSizeSaving: function () {

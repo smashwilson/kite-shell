@@ -67,9 +67,6 @@ var MenuTemplate = function () {
         {
           label: 'Report Issue or Suggest Feedback',
           click: function () {
-            metrics.track('Opened Issue Reporter', {
-              from: 'menu'
-            });
             shell.openExternal('https://github.com/smashwilson/kite-shell/issues/new');
           }
         }

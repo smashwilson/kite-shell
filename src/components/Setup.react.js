@@ -1,11 +1,11 @@
+// Modified from Kitematic by Ash Wilson
+
 import React from 'react/addons';
 import Router from 'react-router';
-import Radial from './Radial.react.js';
 import SetupStore from '../stores/SetupStore';
 import RetinaImage from 'react-retina-image';
 import Header from './Header.react';
 import Util from '../utils/Util';
-import metrics from '../utils/MetricsUtil';
 
 var Setup = React.createClass({
   mixins: [ Router.Navigation ],
@@ -29,23 +29,12 @@ var Setup = React.createClass({
     SetupStore.removeListener(SetupStore.ERROR_EVENT, this.update);
   },
   handleCancelRetry: function () {
-    metrics.track('Setup Retried', {
-      from: 'cancel'
-    });
     SetupStore.retry();
   },
   handleErrorRetry: function () {
-    metrics.track('Setup Retried', {
-      from: 'error',
-      removeVM: false
-    });
     SetupStore.retry(false);
   },
   handleErrorRemoveRetry: function () {
-    metrics.track('Setup Retried', {
-      from: 'error',
-      removeVM: true
-    });
     SetupStore.retry(true);
   },
   handleOpenWebsite: function () {

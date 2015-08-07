@@ -1,7 +1,6 @@
 // Modified from Kitematic by Ash Wilson
 
 import React from 'react/addons';
-import metrics from '../utils/MetricsUtil';
 import utils from '../utils/Util';
 import Router from 'react-router';
 import RetinaImage from 'react-retina-image';
@@ -16,13 +15,10 @@ try {
 var Preferences = React.createClass({
   mixins: [Router.Navigation],
   getInitialState: function () {
-    return {
-      metricsEnabled: metrics.enabled()
-    };
+    return {};
   },
   handleGoBackClick: function () {
     this.goBack();
-    metrics.track('Went Back From About');
   },
   render: function () {
     return (

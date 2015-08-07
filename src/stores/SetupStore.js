@@ -10,7 +10,6 @@ import virtualBox from '../utils/VirtualBoxUtil';
 import setupUtil from '../utils/SetupUtil';
 import util from '../utils/Util';
 import assign from 'object-assign';
-import metrics from '../utils/MetricsUtil';
 import bugsnag from 'bugsnag-js';
 import docker from '../utils/DockerUtil';
 
@@ -170,9 +169,6 @@ var SetupStore = assign(Object.create(EventEmitter.prototype), {
     return Promise.resolve(_requiredSteps);
   }),
   run: Promise.coroutine(function* () {
-    metrics.track('Started Setup', {
-      virtualbox: virtualBox.installed() ? yield virtualBox.version() : 'Not Installed'
-    });
     var steps = yield this.requiredSteps();
     for (let step of steps) {
       _currentStep = step;
@@ -186,16 +182,12 @@ var SetupStore = assign(Object.create(EventEmitter.prototype), {
               this.emit(this.PROGRESS_EVENT);
             }
           });
-          metrics.track('Setup Completed Step', {
-            name: step.name
-          });
           step.percent = 100;
           break;
         } catch (err) {
           if (err) {
             throw err;
           } else {
-            metrics.track('Setup Cancelled');
             _cancelled = true;
             this.emit(this.STEP_EVENT);
           }
@@ -219,13 +211,9 @@ var SetupStore = assign(Object.create(EventEmitter.prototype), {
         }
         docker.setup(ip, machine.name());
         yield docker.waitForConnection();
-        metrics.track('Setup Finished');
         break;
       } catch (err) {
         err.message = util.removeSensitiveData(err.message);
-        metrics.track('Setup Failed', {
-          step: _currentStep,
-        });
         console.log(err);
         bugsnag.notify('SetupError', err.message, {
           error: err,

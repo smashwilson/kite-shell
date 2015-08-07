@@ -7,7 +7,6 @@ import dockerode from 'dockerode';
 import _ from 'underscore';
 import util from './Util';
 import hubUtil from './HubUtil';
-import metrics from '../utils/MetricsUtil';
 import containerServerActions from '../actions/ContainerServerActions';
 import Promise from 'bluebird';
 import rimraf from 'rimraf';
@@ -114,7 +113,6 @@ export default {
             containerServerActions.error({name, error});
             return;
           }
-          metrics.track('Container Finished Creating');
           this.startContainer(name, containerData);
         });
       });
