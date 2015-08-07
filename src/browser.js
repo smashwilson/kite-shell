@@ -13,7 +13,7 @@ process.env.PATH = '/usr/local/bin:' + process.env.PATH;
 
 var size = {}, settingsjson = {};
 try {
-  size = JSON.parse(fs.readFileSync(path.join(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], 'Library', 'Application\ Support', 'Kitematic', 'size')));
+  size = JSON.parse(fs.readFileSync(path.join(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], 'Library', 'Application\ Support', 'Kite-Shell', 'size')));
 } catch (err) {}
 try {
   settingsjson = JSON.parse(fs.readFileSync(path.join(__dirname, 'settings.json'), 'utf8'));
@@ -41,12 +41,6 @@ if (process.platform === 'win32') {
       break;
   }
 }
-
-var openURL = null;
-app.on('open-url', function (event, url) {
-  event.preventDefault();
-  openURL = url;
-});
 
 app.on('ready', function () {
   var mainWindow = new BrowserWindow({
@@ -91,35 +85,13 @@ app.on('ready', function () {
     });
   }
 
-  mainWindow.webContents.on('new-window', function (e) {
-    e.preventDefault();
-  });
-
-  mainWindow.webContents.on('will-navigate', function (e, url) {
-    if (url.indexOf('build/index.html#') < 0) {
-      e.preventDefault();
-    }
-  });
-
   mainWindow.webContents.on('did-finish-load', function() {
-    mainWindow.setTitle('Kitematic');
+    mainWindow.setTitle('Kite-Shell');
     mainWindow.show();
     mainWindow.focus();
 
-    if (openURL) {
-      mainWindow.webContents.send('application:open-url', {
-        url: openURL
-      });
-    }
-    app.on('open-url', function (event, url) {
-      event.preventDefault();
-      mainWindow.webContents.send('application:open-url', {
-        url: url
-      });
-    });
-
     if (process.env.NODE_ENV !== 'development') {
-      autoUpdater.setFeedUrl('https://updates.kitematic.com/releases/latest?version=' + app.getVersion() + '&beta=' + !!settingsjson.beta + '&platform=' + os.platform());
+      // autoUpdater.setFeedUrl('https://updates.kitematic.com/releases/latest?version=' + app.getVersion() + '&beta=' + !!settingsjson.beta + '&platform=' + os.platform());
     }
   });
 

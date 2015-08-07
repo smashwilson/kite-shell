@@ -4,7 +4,6 @@ var shell = require('shell');
 var router = require('./router');
 var util = require('./utils/Util');
 var setupUtil = require('./utils/SetupUtil');
-var metrics = require('./utils/MetricsUtil');
 var machine = require('./utils/DockerMachineUtil');
 var dialog = remote.require('dialog');
 import docker from './utils/DockerUtil';
@@ -13,50 +12,13 @@ import docker from './utils/DockerUtil';
 var MenuTemplate = function () {
   return [
     {
-      label: 'Kitematic',
+      label: 'Kite-Shell',
       submenu: [
       {
-        label: 'About Kitematic',
+        label: 'About Kite-Shell',
         click: function () {
-          metrics.track('Opened About', {
-            from: 'menu'
-          });
           router.get().transitionTo('about');
         }
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Preferences',
-        accelerator: util.CommandOrCtrl() + '+,',
-        enabled: !!docker.host,
-        click: function () {
-          metrics.track('Opened Preferences', {
-            from: 'menu'
-          });
-          router.get().transitionTo('preferences');
-        }
-      },
-      {
-        type: 'separator'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Hide Kitematic',
-        accelerator: util.CommandOrCtrl() + '+H',
-        selector: 'hide:'
-      },
-      {
-        label: 'Hide Others',
-        accelerator: util.CommandOrCtrl() + '+Shift+H',
-        selector: 'hideOtherApplications:'
-      },
-      {
-        label: 'Show All',
-        selector: 'unhideAllApplications:'
       },
       {
         type: 'separator'
@@ -67,63 +29,6 @@ var MenuTemplate = function () {
         click: function() {
           app.quit();
         }
-      }
-      ]
-    },
-    {
-      label: 'File',
-      submenu: [
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Open Docker Command Line Terminal',
-        accelerator: util.CommandOrCtrl() + '+Shift+T',
-        enabled: !!docker.host,
-        click: function() {
-          metrics.track('Opened Docker Terminal', {
-            from: 'menu'
-          });
-          machine.dockerTerminal();
-        }
-      }
-      ]
-    },
-    {
-      label: 'Edit',
-      submenu: [
-      {
-        label: 'Undo',
-        accelerator: util.CommandOrCtrl() + '+Z',
-        selector: 'undo:'
-      },
-      {
-        label: 'Redo',
-        accelerator: 'Shift+' + util.CommandOrCtrl() + '+Z',
-        selector: 'redo:'
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Cut',
-        accelerator: util.CommandOrCtrl() + '+X',
-        selector: 'cut:'
-      },
-      {
-        label: 'Copy',
-        accelerator: util.CommandOrCtrl() + '+C',
-        selector: 'copy:'
-      },
-      {
-        label: 'Paste',
-        accelerator: util.CommandOrCtrl() + '+V',
-        selector: 'paste:'
-      },
-      {
-        label: 'Select All',
-        accelerator: util.CommandOrCtrl() + '+A',
-        selector: 'selectAll:'
       }
       ]
     },
@@ -151,13 +56,6 @@ var MenuTemplate = function () {
         click: function () {
           remote.getCurrentWindow().hide();
         }
-      },
-      {
-        type: 'separator'
-      },
-      {
-        label: 'Bring All to Front',
-        selector: 'arrangeInFront:'
       }
       ]
     },
@@ -170,7 +68,7 @@ var MenuTemplate = function () {
             metrics.track('Opened Issue Reporter', {
               from: 'menu'
             });
-            shell.openExternal('https://github.com/kitematic/kitematic/issues/new');
+            shell.openExternal('https://github.com/smashwilson/kite-shell/issues/new');
           }
         }
       ]
