@@ -17,7 +17,6 @@ var App = React.createClass({
 
 var routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="preferences" path="/preferences" handler={Preferences}/>
     <Route name="about" path="/about" handler={About}/>
     <DefaultRoute name="setup" handler={Setup}/>
   </Route>
